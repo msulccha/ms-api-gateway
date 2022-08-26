@@ -1,0 +1,81 @@
+spring:
+    application:
+        name: ms-api-gateway
+    cloud:
+       gateway:
+          routes:
+
+          - id: ms-customer
+            uri: lb://ms-customer
+            predicates:
+            - Path=/api/ms-customer/**
+            filters: StripPrefix=2
+
+          - id: ms-creditcard
+            uri: lb://ms-creditcard
+            predicates:
+             - Path=/api/ms-creditcard/**
+            filters: StripPrefix=2
+
+          - id: ms-credit-charge
+            uri: lb://ms-credit-charge
+            predicates:
+                - Path=/api/ms-credit-charge/**
+            filters: StripPrefix=2
+
+          - id: ms-credit-pay
+            uri: lb://ms-credit-pay
+            predicates:
+                - Path=/api/ms-credit-pay/**
+            filters: StripPrefix=2
+
+#EUREKA CLIENT
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+#
+#server:
+#  port: 9090
+
+
+#spring:
+#  application:
+#    name: ms-api-gateway
+#
+#  cloud:
+#    gateway:
+#      routes:
+
+#      - id: ms-customer
+#        uri: lb://ms-customer
+#        predicates:
+#        - Path=/api/ms-customer/**
+#        filters: StripPrefix=2
+
+#      - id: ms-profile
+#        uri: lb://ms-profile
+#        predicates:
+#        - Path=/api/ms-profile/**
+#        filters: StripPrefix=2
+
+#
+#      - id: ms-saving-account
+#        uri: lb://ms-saving-account
+#        predicates:
+#        - Path=/api/ms-saving-account/**
+#        filters: StripPrefix=2
+#
+#      - id: ms-fixedTerm-account
+#        uri: lb://ms-fixedTerm-account
+#        predicates:
+#        - Path=/api/ms-fixedTerm-account/**
+#        filters: StripPrefix=2
+
+#      - id: ms-management-cta-ahorro
+#        uri: lb://ms-management-cta-ahorro
+#        predicates:
+#        - Path=/api/ms-cta-ahorro/**
+#        filters: StripPrefix=2
+
+
